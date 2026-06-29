@@ -1,0 +1,366 @@
+@use 'variables' as *;
+
+// ============================================================
+// BUTTONS
+// ============================================================
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: $radius-md;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all $transition;
+  white-space: nowrap;
+
+  &--primary {
+    background: $color-primary;
+    color: #fff;
+    &:hover {
+      background: $color-primary-hover;
+      transform: translateY(-1px);
+      box-shadow: $shadow-glow;
+    }
+    &:active { transform: translateY(0); }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: $color-text-muted;
+    border: 1px solid $color-border;
+    &:hover {
+      border-color: $color-border-light;
+      color: $color-text;
+      background: $color-surface-2;
+    }
+  }
+
+  &--danger {
+    background: $color-expense-dim;
+    color: $color-expense;
+    border: 1px solid rgba(248, 113, 113, 0.2);
+    &:hover {
+      background: rgba(248, 113, 113, 0.2);
+    }
+  }
+
+  &--icon {
+    padding: 8px;
+    border-radius: $radius-sm;
+    background: $color-surface-2;
+    color: $color-text-muted;
+    border: 1px solid $color-border;
+    &:hover {
+      color: $color-text;
+      border-color: $color-border-light;
+    }
+    &.danger:hover {
+      color: $color-expense;
+      background: $color-expense-dim;
+      border-color: rgba(248, 113, 113, 0.3);
+    }
+  }
+
+  &--sm {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+  }
+
+  &--full { width: 100%; justify-content: center; }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+}
+
+// ============================================================
+// FORM ELEMENTS
+// ============================================================
+.form-group {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $color-text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    background: $color-surface-2;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    padding: 12px 14px;
+    color: $color-text;
+    font-size: 0.9rem;
+    transition: border-color $transition, box-shadow $transition;
+
+    &:focus {
+      border-color: $color-primary;
+      box-shadow: 0 0 0 3px rgba(124, 110, 247, 0.15);
+    }
+
+    &::placeholder { color: $color-text-dim; }
+  }
+
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237b82a8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+
+    option {
+      background: $color-surface;
+      color: $color-text;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+}
+
+// ============================================================
+// CARD
+// ============================================================
+.card {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: 24px;
+  transition: border-color $transition;
+
+  &:hover { border-color: $color-border-light; }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: $color-text;
+    }
+  }
+}
+
+// ============================================================
+// MODAL
+// ============================================================
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.15s ease;
+}
+
+.modal {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  padding: 32px;
+  width: 100%;
+  max-width: 480px;
+  animation: slideUp 0.2s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+  }
+
+  &__close {
+    background: $color-surface-2;
+    border: 1px solid $color-border;
+    color: $color-text-muted;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: all $transition;
+    &:hover {
+      color: $color-text;
+      border-color: $color-border-light;
+    }
+  }
+}
+
+// ============================================================
+// ANIMATIONS
+// ============================================================
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// ============================================================
+// LOADING SPINNER
+// ============================================================
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(124, 110, 247, 0.3);
+  border-top-color: $color-primary;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  .spinner { width: 36px; height: 36px; border-width: 3px; }
+}
+
+// ============================================================
+// PAGINATION
+// ============================================================
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 28px;
+
+  button {
+    width: 36px;
+    height: 36px;
+    border-radius: $radius-sm;
+    background: $color-surface-2;
+    border: 1px solid $color-border;
+    color: $color-text-muted;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all $transition;
+
+    &:hover {
+      border-color: $color-primary;
+      color: $color-primary;
+    }
+
+    &.active {
+      background: $color-primary;
+      border-color: $color-primary;
+      color: #fff;
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+
+  .pagination__dots {
+    color: $color-text-dim;
+    font-size: 0.875rem;
+    padding: 0 4px;
+  }
+}
+
+// ============================================================
+// ICON PICKER
+// ============================================================
+.icon-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  .icon-option {
+    width: 42px;
+    height: 42px;
+    border-radius: $radius-sm;
+    background: $color-surface-2;
+    border: 2px solid $color-border;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all $transition;
+
+    &:hover { border-color: $color-primary; transform: scale(1.1); }
+    &.selected {
+      border-color: $color-primary;
+      background: $color-primary-dim;
+    }
+  }
+}
+
+// ============================================================
+// TABS
+// ============================================================
+.tabs {
+  display: flex;
+  background: $color-surface-2;
+  border-radius: $radius-md;
+  padding: 4px;
+  gap: 4px;
+  border: 1px solid $color-border;
+
+  .tab-btn {
+    flex: 1;
+    padding: 8px 16px;
+    border-radius: $radius-sm;
+    background: transparent;
+    border: none;
+    color: $color-text-muted;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all $transition;
+
+    &.active {
+      background: $color-primary;
+      color: #fff;
+    }
+
+    &:hover:not(.active) { color: $color-text; }
+  }
+}
+
+// ============================================================
+// SCROLLBAR
+// ============================================================
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: $color-bg; }
+::-webkit-scrollbar-thumb { background: $color-border-light; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: $color-text-dim; }

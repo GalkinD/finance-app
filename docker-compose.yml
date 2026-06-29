@@ -1,0 +1,55 @@
+version: '3.9'
+
+services:
+
+  # ── MongoDB ────────────────────────────────────────────────
+  mongo:
+    image: mongo:7.0
+    container_name: finance_mongo
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db          # персистентные данные
+    environment:
+      MONGO_INITDB_DATABASE: finance-app
+    networks:
+      - finance_net
+    # Порт НЕ пробрасываем наружу — только внутри сети
+
+  # ── Backend (Express + Node.js) ────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: finance_backend
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    environment:
+      PORT: 5000
+      MONGO_URI: mongodb://mongo:27017/finance-app
+      JWT_SECRET: ${JWT_SECRET:-change_this_secret_in_production}
+      JWT_EXPIRE: 7d
+    networks:
+      - finance_net
+    # Порт НЕ пробрасываем наружу — Nginx проксирует
+
+  # ── Frontend (React → Nginx) ───────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: finance_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "80:80"                       # единственная точка входа
+    networks:
+      - finance_net
+
+volumes:
+  mongo_data:                         # данные MongoDB сохраняются между перезапусками
+
+networks:
+  finance_net:
+    driver: bridge

@@ -1,0 +1,62 @@
+@use '../../styles/variables' as *;
+
+// ── Input error / hint ────────────────────────────────────────
+.input--error {
+  border-color: $color-expense !important;
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15) !important;
+}
+
+.field-error {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.78rem;
+  color: $color-expense;
+}
+
+.field-hint {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.78rem;
+  color: $color-text-muted;
+}
+
+// ── Page loader ───────────────────────────────────────────────
+.loader-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  gap: 14px;
+
+  &__spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(124, 110, 247, 0.2);
+    border-top-color: $color-primary;
+    border-radius: 50%;
+    animation: spin 0.75s linear infinite;
+  }
+
+  &__text {
+    font-size: 0.875rem;
+    color: $color-text-muted;
+  }
+}
+
+// ── Inline loader ─────────────────────────────────────────────
+.loader-inline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+
+  &__spinner {
+    width: 28px;
+    height: 28px;
+    border: 2px solid rgba(124, 110, 247, 0.2);
+    border-top-color: #7c6ef7;
+    border-radius: 50%;
+    animation: spin 0.75s linear infinite;
+  }
+}

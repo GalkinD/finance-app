@@ -1,0 +1,39 @@
+@use '../../styles/variables' as *;
+
+.color-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.color-option {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all $transition;
+  outline: none;
+
+  &:hover { transform: scale(1.2); }
+  &.selected {
+    border-color: $color-text;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.3);
+    transform: scale(1.15);
+  }
+}
+
+.modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid $color-border;
+
+  &__right {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+  }
+}

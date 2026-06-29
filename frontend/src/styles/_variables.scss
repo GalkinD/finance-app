@@ -1,0 +1,149 @@
+// ============================================================
+// VARIABLES
+// ============================================================
+$color-bg: #0f1117;
+$color-surface: #1a1d27;
+$color-surface-2: #222636;
+$color-border: #2e3350;
+$color-border-light: #3d4468;
+
+$color-primary: #7c6ef7;
+$color-primary-hover: #9585ff;
+$color-primary-dim: rgba(124, 110, 247, 0.15);
+
+$color-income: #34d399;
+$color-income-dim: rgba(52, 211, 153, 0.12);
+$color-expense: #f87171;
+$color-expense-dim: rgba(248, 113, 113, 0.12);
+
+$color-text: #e8eaf6;
+$color-text-muted: #7b82a8;
+$color-text-dim: #4a5280;
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+$shadow-md: 0 4px 24px rgba(0, 0, 0, 0.4);
+$shadow-glow: 0 0 24px rgba(124, 110, 247, 0.2);
+
+$transition: 0.2s ease;
+
+// ============================================================
+// RESET & BASE
+// ============================================================
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: $color-bg;
+  color: $color-text;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+  &:hover { color: $color-primary-hover; }
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+}
+
+input, select, textarea {
+  font-family: 'Inter', sans-serif;
+  outline: none;
+}
+
+// ============================================================
+// UTILITY CLASSES
+// ============================================================
+.income-color { color: $color-income; }
+.expense-color { color: $color-expense; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  
+  &--income {
+    background: $color-income-dim;
+    color: $color-income;
+  }
+  &--expense {
+    background: $color-expense-dim;
+    color: $color-expense;
+  }
+}
+
+.page-header {
+  margin-bottom: 28px;
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: $color-text;
+  }
+  p {
+    color: $color-text-muted;
+    margin-top: 4px;
+    font-size: 0.9rem;
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: $color-text-muted;
+  .empty-state__icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    opacity: 0.5;
+  }
+  p { font-size: 0.95rem; }
+}
+
+.error-message {
+  background: $color-expense-dim;
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  color: $color-expense;
+  padding: 10px 14px;
+  border-radius: $radius-sm;
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+}
+
+.success-message {
+  background: $color-income-dim;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: $color-income;
+  padding: 10px 14px;
+  border-radius: $radius-sm;
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+}
